@@ -1,4 +1,9 @@
+set :layout, 'application'
 set :css_dir, 'stylesheets'
+
+configure :development do
+  activate :livereload
+end
 
 configure :build do
   activate :minify_css

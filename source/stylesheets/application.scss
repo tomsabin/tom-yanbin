@@ -20,6 +20,10 @@ body {
 
 a {
   color: inherit;
+
+  &:hover {
+    color: mix($pale-yellow, $red, 90%);
+  }
 }
 
 .welcome-mat {
@@ -32,8 +36,9 @@ a {
   z-index: 1;
 
   color: $red;
-  font-family: Tahoma, Helvetica, Arial, "Adobe Fan Heiti Std", "Microsoft Yahei", "微软雅黑", STXihei, "华文细黑", sans-serif;
+  font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei", "微软雅黑", STXihei, "华文细黑", sans-serif;
   font-size: 12vw;
+  font-weight: 600;
   line-height: 80vh;
   text-align: center;
 
@@ -70,26 +75,30 @@ a {
 
   &.last-of-type {
     border-bottom: 0;
-    margin-bottom: 0;
-    padding-bottom: 0;
   }
 
   @include breakpoint {
-    @supports( (-webkit-columns: 2) or (-moz-columns: 2) or (columns: 2) ) {
-      $rule: 1px solid mix($pale-yellow, $red, 20%);
-      -webkit-column-count: 2;
-      -webkit-column-gap: 48px;
-      -webkit-column-rule: $rule;
-      -moz-column-count: 2;
-      -moz-column-gap: 48px;
-      -moz-column-rule: $rule;
-      column-count: 2;
-      column-gap: 48px;
-      column-rule: $rule;
-      border-bottom: 0;
-      margin-bottom: 24px;
-      padding-bottom: 0;
+    $column-rule: 1px solid mix($pale-yellow, $red, 20%);
+    -moz-column-count: 2;
+    -moz-column-gap: 48px;
+    -moz-column-rule: $column-rule;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 48px;
+    -webkit-column-rule: $column-rule;
+    column-count: 2;
+    column-gap: 48px;
+    column-rule: $column-rule;
+    border-bottom: 0;
+    padding-bottom: 0;
+    margin-bottom: 24px;
+
+    &.last-of-type {
+      margin-bottom: 48px;
     }
+  }
+
+  .text--en {
+    margin-bottom: 16px;
   }
 }
 
@@ -106,23 +115,20 @@ a {
   font-weight: normal;
 
   @include breakpoint {
-    @supports( (-webkit-columns: 2) or (-moz-columns: 2) or (columns: 2) ) {
-      -webkit-column-break-inside: avoid;
-      page-break-inside: avoid;
-      break-inside: avoid;
-    }
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
 }
 
 .text--en {
-  font-family: 'Ek Mukta', sans-serif;
+  font-family: 'Ek Mukta', Helvetica, Arial, sans-serif;
   line-height: 1.1;
-  margin-bottom: 16px;
 }
 
 .text--cn {
   line-height: 1.2;
-  font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei", "微软雅黑", STXihei, "华文细黑", sans-serif;
+  font-family: Helvetica, Arial, "Microsoft Yahei", "微软雅黑", STXihei, "华文细黑", sans-serif;
 }
 
 .image {
@@ -130,4 +136,102 @@ a {
   border-top: 1px solid $pale-yellow;
   display: block;
   width: 100%;
+}
+
+.timeline {
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 24px 0;
+  position: relative;
+
+  @supports( display: flex ) {
+    &:before {
+      background-color: mix($pale-yellow, $red, 20%);
+      bottom: 0;
+      content: '';
+      left: 50%;
+      left: calc(50% - 1px);
+      position: absolute;
+      text-align: center;
+      top: 0;
+      width: 1px;
+    }
+  }
+
+  @supports( left: calc(50% - 5px) ) {
+    &:after {
+      background-color: mix($pale-yellow, $red, 20%);
+      content: '';
+      left: calc(50% - 5px);
+      position: absolute;
+      bottom: 0;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+  }
+}
+
+.timeline-point {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  overflow: auto;
+  padding: 12px 0;
+}
+
+.timeline-point__time {
+  background-color: $pale-yellow;;
+  border-radius: 8px;
+  color: $red;
+  flex-shrink: 0;
+  font-family: 'Ek Mukta', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  order: 2;
+  padding: 4px 6px;
+  z-index: 2;
+
+  @include breakpoint {
+    font-size: 16px;
+  }
+}
+
+.timeline-point__en,
+.timeline-point__cn {
+  border-radius: 8px;
+  flex: 50%;
+  font-size: 16px;
+  padding: 8px 10px;
+
+  @include breakpoint {
+    font-size: 18px;
+  }
+}
+
+.timeline-point__en {
+  background: mix($pale-yellow, $red, 15%);
+  order: 1;
+
+  @supports( display: flex ) {
+    text-align: right;
+    margin-right: 12px;
+  }
+
+  @include breakpoint {
+    background: linear-gradient(to left, mix($pale-yellow, $red, 20%), $red);
+  }
+}
+
+.timeline-point__cn {
+  background: mix($pale-yellow, $red, 15%);
+  order: 3;
+  text-align: left;
+
+  @supports( display: flex ) {
+    margin-left: 12px;
+  }
+
+  @include breakpoint {
+    background: linear-gradient(to right, mix($pale-yellow, $red, 20%), $red);
+  }
 }

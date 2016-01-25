@@ -52,13 +52,21 @@ a {
   padding-top: 80vh;
   position: absolute;
   right: 0;
-  z-index: 2;
+  z-index: 3;
 }
 
 .content__container {
+  min-height: 100vh;
+}
+
+.content__container--red-bg {
   background-color: $red;
   color: $pale-yellow;
-  min-height: 100vh;
+}
+
+.content__container--yellow-bg {
+  background-color: $pale-yellow;
+  color: $red;
 }
 
 .section {

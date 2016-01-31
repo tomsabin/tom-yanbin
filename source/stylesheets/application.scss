@@ -24,6 +24,10 @@ a {
   &:hover {
     color: mix($pale-yellow, $red, 90%);
   }
+
+  &.no-style {
+    text-decoration: none;
+  }
 }
 
 .welcome-mat {
@@ -73,16 +77,13 @@ a {
   padding: 24px;
 }
 
-.title,
-.text {
-  margin: 0 auto;
-  max-width: 960px;
+.column {
   border-bottom: 1px solid mix($pale-yellow, $red, 20%);
-  margin-bottom: 16px;
   padding-bottom: 16px;
 
-  &.last-of-type {
+  &.last-item {
     border-bottom: 0;
+    margin-bottom: 0;
   }
 
   @include breakpoint {
@@ -98,16 +99,17 @@ a {
     column-rule: $column-rule;
     border-bottom: 0;
     padding-bottom: 0;
-    margin-bottom: 24px;
 
-    &.last-of-type {
+    &.last-item {
       margin-bottom: 48px;
     }
   }
+}
 
-  .text--en {
-    margin-bottom: 16px;
-  }
+.title,
+.text {
+  margin: 0 auto 24px;
+  max-width: 960px;
 }
 
 .title {
@@ -115,6 +117,7 @@ a {
   text-align: center;
 
   @include breakpoint {
+    margin-bottom: 24px;
     margin-top: 48px;
   }
 }
@@ -132,6 +135,11 @@ a {
 .text--en {
   font-family: 'Ek Mukta', Helvetica, Arial, sans-serif;
   line-height: 1.1;
+  margin-bottom: 16px;
+
+  @include breakpoint {
+    margin-bottom: 0;
+  }
 }
 
 .text--cn {

@@ -27,7 +27,6 @@ assets:
   - images/2-preparations-24.jpeg
   - images/2-preparations-25.jpeg
   - images/2-preparations-26.jpeg
-  - images/2-preparations-27.jpeg
   - images/2-preparations-28.jpeg
   - images/2-preparations-29.jpeg
   - images/2-preparations-30.jpeg
@@ -217,9 +216,14 @@ assets:
 <main class="o-bottom-content">
   <% current_page.data.assets.each do |asset| %>
     <% if asset =~ /.jpeg\z/ %>
-      <img src="/assets/<%= asset %>">
+      <img class="lazy" data-src="/assets/<%= asset %>">
+      <noscript><img src="/assets/<%= asset %>"></noscript>
     <% elsif asset =~ /.mp4\z/ %>
-      <video src="/assets/<%= asset %>" controls></video>
+      <video class="lazy" data-src="/assets/<%= asset %>" poster="/assets/<%= asset.sub('.mp4', '.jpeg') %>" controls></video>
+      <noscript><video src="/assets/<%= asset %>" poster="/assets/<%= asset.sub('.mp4', '.jpeg') %>" controls></video></noscript>
     <% end %>
   <% end %>
 </main>
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyloadxt/1.1.0/jquery.lazyloadxt.extra.min.js"></script>

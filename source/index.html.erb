@@ -193,7 +193,7 @@ assets:
 
 ---
 
-<div class="o-box o-top-content">
+<div class="o-box o-celebration-gratitude">
   <div class="o-box__header text--large">
     囍
   </div>
@@ -213,9 +213,14 @@ assets:
   </p>
 </div>
 
-<main class="o-bottom-content">
+<main class="o-celebration-timeline">
   <% current_page.data.assets.each do |asset| %>
-    <% if asset =~ /.jpeg\z/ %>
+    <% if asset == "images/4-photo-booth.jpeg" %>
+      <a href="/photo-booth">
+        <img class="lazy" data-src="/assets/<%= asset %>">
+        <noscript><img src="/assets/<%= asset %>"></noscript>
+      </a>
+    <% elsif asset =~ /.jpeg\z/ %>
       <img class="lazy" data-src="/assets/<%= asset %>">
       <noscript><img src="/assets/<%= asset %>"></noscript>
     <% elsif asset =~ /.mp4\z/ %>
@@ -224,6 +229,3 @@ assets:
     <% end %>
   <% end %>
 </main>
-
-<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyloadxt/1.1.0/jquery.lazyloadxt.extra.min.js"></script>

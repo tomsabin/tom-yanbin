@@ -1,6 +1,8 @@
 set :layout, 'application'
 set :css_dir, 'stylesheets'
 
+activate :directory_indexes
+
 configure :development do
   activate :livereload
 end
